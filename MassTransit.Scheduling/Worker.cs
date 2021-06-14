@@ -67,17 +67,17 @@ namespace MassTransit.Scheduling
                         });
                         break;
                     case "2":
-                        Console.WriteLine("Por favor informe o cancellationId");
-                        var cancellationId = Console.ReadLine();
                         var queue = new Uri("rabbitmq://localhost/notification_queue");
-                        var id = new Guid(cancellationId);
-                        await _messageScheduler.CancelScheduledSend(queue, id);
+                        Console.WriteLine("Please, enter with cancellationId");
+                        var cancellationId = new Guid(Console.ReadLine());
+                        await _messageScheduler.CancelScheduledSend(queue, cancellationId);
                         break;
                 }
 
             } while (true);
 
 
+            await scheduler.Shutdown();
             await _busControl.StopAsync();
         }
 
