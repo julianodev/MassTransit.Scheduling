@@ -61,8 +61,8 @@ namespace MassTransit.Scheduling
                         var endpoint = await _busControl.GetSendEndpoint(new Uri("rabbitmq://localhost/schedule_notification_queue"));
                         await endpoint.Send<IScheduleNotification>(new
                         {
-                            DeliveryTime = DateTime.Now.AddSeconds(30),
-                            EmailAddress = "jefferson@live.com",
+                            DeliveryTime = DateTime.Now.AddMinutes(1),
+                            EmailAddress = "masstransit@live.com",
                             Body = "Hello World!"
                         });
                         break;
